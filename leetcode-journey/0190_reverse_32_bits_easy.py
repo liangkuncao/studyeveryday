@@ -1,9 +1,13 @@
 class Solution(object):
     # Pythonic way, easy to understand.
     def reverseBits(self, n):
-        bit_str = f'{n:032b}'
-        reverse_str = bit_str[::-1]
-        return int(reverse_str, 2)
+        output, power = 0, 31
+        while n:
+            output += (n & 1) << power
+            n = n >> 1
+            power -= 1
+        return output
+
 
 
 if __name__ == '__main__':
