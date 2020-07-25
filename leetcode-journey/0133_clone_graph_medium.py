@@ -24,8 +24,7 @@ class Solution:
 
         queue = list()
         queue.append(node)
-        visited = []
-        visited.append(node)
+        visited = [node]
         while queue:
             pop_node = queue.pop(0)
             for i in pop_node.neighbors:
@@ -34,3 +33,20 @@ class Solution:
                     queue.append(i)
                     visited.append(i)
         return node_map[node]
+
+
+class Solution2:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        node_map = dict()
+
+        def DFS(node: 'Node') -> 'Node':
+            if not node:
+                return node
+            if node not in node_map:
+                new_node = Node(node.val)
+                node_map[node] = new_node
+                for i in node.neighbors:
+                    new_node.neighbors.append(DFS(i))
+            return node_map[node]
+
+        return DFS(node)
