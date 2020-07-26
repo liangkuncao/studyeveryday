@@ -1,18 +1,17 @@
 # can't process negative number
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
-        ret = 0
+        if dividend == -(2 ** 31) and divisor == -1:
+            return 2 ** 31 - 1
+
+        negative = (dividend > 0) ^ (divisor > 0)
+        dividend = dividend if dividend > 0 else -dividend
+        divisor = divisor if divisor > 0 else -divisor
+        result = 0
         while dividend >= divisor:
-            dividend_1, divisor_1 = dividend, divisor
-            count = 0
-            while dividend_1 >= divisor_1:
-                divisor_1 <<= 1
-                count += 1
-            divisor_1 >>= 1
-            count -= 1
-            ret += 2 ** count
-            dividend -= divisor_1
-        return ret
-
-
-print(Solution().divide(7, -3))
+            shift = 0
+            while dividend >= (divisor << shift):
+                shift += 1
+            dividend -= divisor << (shift - 1)
+            result += 1 << (shift - 1)
+        return -result if negative else result
