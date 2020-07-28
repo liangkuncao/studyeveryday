@@ -3,19 +3,23 @@ class Solution:
         if not s:
             return 0
 
-        letter_counts = [0 for _ in range(26)]
+        char_counter = {chr(i): 0 for i in range(ord('A'), ord('Z') + 1)}
+        left, right, most_freq = 0, 0, 0
         res = 0
-        left = right = 0
-        most_frequent = 0
         while right < len(s):
-            letter = s[right]
-            letter_counts[ord(letter) - ord('A')] += 1
-            most_frequent = max(letter_counts)
-            while right - left + 1 > most_frequent + k:
-                letter = s[left]
-                letter_counts[ord(letter) - ord('A')] -= 1
-                most_frequenct = max(letter_counts)
+            char = s[right]
+            char_counter[char] += 1
+            most_freq = max(most_freq, char_counter[char])
+
+            while right - left + 1 > most_freq + k:
+                char = s[left]
+                char_counter[char] -= 1
+                most_freq = max(char_counter.values())
                 left += 1
+
             res = max(res, right - left + 1)
             right += 1
         return res
+
+
+print(Solution().characterReplacement("AABABBA", 1))
