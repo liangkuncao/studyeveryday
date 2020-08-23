@@ -1,35 +1,54 @@
+class TrieNode:
+    def __init__(self):
+        self.child_nodes = {}
+        self.is_word_end = False
+
+
 class Trie:
 
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.word_set = set()
+        self.root = TrieNode()
 
     def insert(self, word: str) -> None:
         """
         Inserts a word into the trie.
         """
-        self.word_set.add(word)
+        curr_node = self.root
+        for ch in word:
+            node = curr_node.child_nodes.get(ch, TrieNode())
+            curr_node.child_nodes[ch] = node
+            curr_node = node
+        curr_node.is_word_end = True
 
     def search(self, word: str) -> bool:
         """
         Returns if the word is in the trie.
         """
-        return word in self.word_set
+        curr_node = self.root
+        for ch in word:
+            node = curr_node.child_nodes.get(ch)
+            if not node:
+                return False
+            curr_node = node
+        return curr_node.is_word_end
 
     def startsWith(self, prefix: str) -> bool:
         """
         Returns if there is any word in the trie that starts with the given prefix.
         """
-        return any(word.startswith(prefix) for word in self.word_set)
+        curr_node = self.root
+        for ch in prefix:
+            node = curr_node.child_nodes.get(ch)
+            if not node:
+                return False
+            curr_node = node
+        return True
 
-
-t = Trie()
-print(t.insert('hello'))
-print(t.search('hell'))
-print(t.search('helloa'))
-print(t.search('hello'))
-print(t.startsWith('hell'))
-print(t.startsWith('helloa'))
-print(t.startsWith('hello'))
+# Your Trie object will be instantiated and called as such:
+# obj = Trie()
+# obj.insert(word)
+# param_2 = obj.search(word)
+# param_3 = obj.startsWith(prefix)
