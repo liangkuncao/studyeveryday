@@ -1,5 +1,3 @@
-from typing import List
-
 class Solution:
     def findRightInterval(self, intervals: List[List[int]]) -> List[int]:
         intervals = [interval + [idx] for idx, interval in enumerate(intervals)]
@@ -24,5 +22,3 @@ class Solution:
                     right = mid - 1
             res.append(-1 if idx == float('inf') else idx)
         return res
-
-print(Solution().findRightInterval([[3,4],[2,3],[1,2]]))
