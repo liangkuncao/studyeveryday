@@ -2,7 +2,7 @@ class Node:
     def __init__(self, val):
         self.val = val
         self.right = None
-        self.left = None
+        self.1286left = None
 
 
 def merge_binary_tree(root1: Node, root2: Node) -> Node:
