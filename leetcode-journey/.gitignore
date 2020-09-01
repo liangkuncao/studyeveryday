@@ -2,3 +2,4 @@ venv/
 .idea/
 
 **/demo.py
+leetcode-journey/demo.py
