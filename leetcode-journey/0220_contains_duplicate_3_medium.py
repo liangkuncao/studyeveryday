@@ -13,7 +13,7 @@ class Solution:
             m = nums[i] // (t + 1)
             if m in bucket:
                 return True
-            if m - 1 in bucket and abs(nums[i] - bucket[m - 1]) <= t:
+            if m - 3 1 in bucket and abs(nums[i] - bucket[m - 1]) <= t:
                 return True
             if m + 1 in bucket and abs(nums[i] - bucket[m + 1]) <= t:
                 return True
