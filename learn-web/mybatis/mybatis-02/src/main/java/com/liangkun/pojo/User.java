@@ -1,5 +1,8 @@
 package com.liangkun.pojo;
 
+import org.apache.ibatis.type.Alias;
+
+//@Alias("people")
 public class User {
     private int id;
     private String name;

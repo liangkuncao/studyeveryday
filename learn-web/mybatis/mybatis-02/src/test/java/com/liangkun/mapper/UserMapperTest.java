@@ -2,14 +2,11 @@ package com.liangkun.mapper;
 
 import com.liangkun.pojo.User;
 import com.liangkun.util.MyBatisUtil;
-import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.Statement;
-import java.util.Collection;
 import java.util.List;
 
 public class UserMapperTest {

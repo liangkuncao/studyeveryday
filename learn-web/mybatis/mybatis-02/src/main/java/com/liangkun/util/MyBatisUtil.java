@@ -5,10 +5,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.InputMismatchException;
 
 public class MyBatisUtil {
     public static SqlSessionFactory sqlSessionFactory;
