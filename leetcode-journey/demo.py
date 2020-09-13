@@ -1,18 +1,22 @@
-list1 = [1, 2, 4]
-list2 = [0, 1, 3]
+def is_flower_num(num: int) -> bool:
+    n = num
+    total = 0
+    while n > 0:
+        n, remainder = divmod(n, 10)
+        total += remainder ** 3
+        if total > num:
+            return False
+    return True if total == num else False
 
-def func(list1, list2):
+
+while True:
+    m, n = map(int, input().split())
     res = []
-    while not list1 and not list2:
-        if list1[0] <= list2[0]:
-            res.append(list1.pop(0))
-        else:
-            res.append(list2.pop(0))
-        print(list1, list2, sep='\n')
-    if list1:
-        res += list1
-    if list2:
-        res += list2
-    return res
+    for i in range(m, n + 1):
+        if is_flower_num(i):
+            res.append(i)
+    if not res:
+        print('no')
+    else:
+        print(*res)
 
-print(func(list1, list2))
