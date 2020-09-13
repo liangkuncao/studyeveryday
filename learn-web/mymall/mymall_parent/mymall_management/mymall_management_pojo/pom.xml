@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mymall</groupId>
-    <artifactId>mymall_manager_pojo</artifactId>
+    <artifactId>mymall_management_pojo</artifactId>
 
 
 </project>
