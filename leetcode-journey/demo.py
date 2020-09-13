@@ -1,22 +1,34 @@
-def is_flower_num(num: int) -> bool:
-    n = num
-    total = 0
-    while n > 0:
-        n, remainder = divmod(n, 10)
-        total += remainder ** 3
-        if total > num:
-            return False
-    return True if total == num else False
+from typing import List
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        intervals1 = []
+        intervals2 = []
+
+        for idx, interval in enumerate(intervals):
+            left, right = interval[0], interval[1]
+            if newInterval[0] < left:
+                intervals1 = intervals[:idx]
+                intervals1.append(newInterval)
+                break
+            elif left <= newInterval[0] <= right:
+                intervals1 = intervals[:idx + 1]
+                break
+
+        for idx, interval in enumerate(intervals[::-1]):
+            left, right = interval[0], interval[1]
+            if newInterval[1] > right:
+                intervals2 = intervals[len(intervals) - idx:]
+                intervals2.insert(0, newInterval)
+                break
+            elif left <= newInterval[1] <= right:
+                intervals2 = intervals[len(intervals) - 1 - idx:]
+                break
+
+        intervals1[-1][1] = intervals2.pop(0)[1]
+        return intervals1 + intervals2
 
 
-while True:
-    m, n = map(int, input().split())
-    res = []
-    for i in range(m, n + 1):
-        if is_flower_num(i):
-            res.append(i)
-    if not res:
-        print('no')
-    else:
-        print(*res)
-
+intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]]
+newInterval = [4,8]
+print(Solution().insert(intervals, newInterval))
