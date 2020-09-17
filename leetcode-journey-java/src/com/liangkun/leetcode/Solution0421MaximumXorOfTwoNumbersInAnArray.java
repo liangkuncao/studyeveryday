@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class Solution {
+public class Solution0421MaximumXorOfTwoNumbersInAnArray {
     public int findMaximumXOR(int[] nums) {
         int res = 0;
         for (int i = 31; i > -1; i--) {
