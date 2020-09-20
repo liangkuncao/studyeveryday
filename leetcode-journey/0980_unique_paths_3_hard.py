@@ -1,5 +1,3 @@
-from typing import List, Set
-
 class Solution:
     def uniquePathsIII(self, grid: List[List[int]]) -> int:
         starting, ending = None, None
@@ -34,8 +32,3 @@ class Solution:
                 count = self.helper(count, i, empty, ending)
                 empty.add(i)
         return count
-
-input_data = [[1,0,0,0],
-              [0,0,0,0],
-              [0,0,2,-1]]
-print(Solution().uniquePathsIII(input_data))
