@@ -20,7 +20,7 @@ class Solution:
             # Count the zeros
             if arr[left] == 0:
                 # Edge case: This zero can't be duplicated. We have no more space,
-                # as left is pointing to the last element which could be included  
+                # as left is pointing to the last element which could be included
                 if left == length_ - possible_dups:
                     arr[length_] = 0 # For this zero we just copy it without duplication.
                     length_ -= 1
@@ -38,9 +38,3 @@ class Solution:
                 arr[i + possible_dups] = 0
             else:
                 arr[i + possible_dups] = arr[i]
-
-
-arr = [1,0,2,3,0,4,5,0]
-print(arr)
-print(Solution().duplicateZeros(arr))
-print(arr)
