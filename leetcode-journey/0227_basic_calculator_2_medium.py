@@ -19,10 +19,11 @@ class Solution:
             elif sign == '*':
                 prev *= curr
             elif sign == '/':
-                prev //= curr
+                prev = int(prev / curr)
             if i + 1 < len(s):
                 sign = s[i]
             i += 1
         return res + prev
 
-print(Solution().calculate("14-3/2"))
+
+
