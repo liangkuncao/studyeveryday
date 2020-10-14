@@ -17,3 +17,23 @@ class Solution:
                 str_a[i], str_a[pos] = str_a[pos], str_a[i]
                 return str_a[i:] == str_b[i:]
         return True
+
+class Solution:
+    def buddyStrings(self, A: str, B: str) -> bool:
+        if len(A) != len(B):
+            return False
+        if A == B:
+            if len(set(A)) == len(A):
+                return False
+            else:
+                return True
+        diffs = []
+        for c1, c2 in zip(A, B):
+            if c1 != c2:
+                diffs.append((c1, c2))
+                if len(diffs) > 2:
+                    return False
+        if len(diffs) != 2:
+            return False
+        diffs[0] = (diffs[0][1], diffs[0][0])
+        return diffs[0] == diffs[1]
