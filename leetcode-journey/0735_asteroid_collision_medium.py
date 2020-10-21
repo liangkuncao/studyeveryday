@@ -1,5 +1,3 @@
-from typing import List
-
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         stack = []
@@ -21,5 +19,3 @@ class Solution:
                 if insert_flg:
                     stack.append(x)
         return stack
-
-print(Solution().asteroidCollision([5,10,-5]))
