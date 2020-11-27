@@ -2,17 +2,21 @@ from typing import List
 
 
 class Solution:
-    def smallestRepunitDivByK(self, K: int) -> int:
-        num = 1
-        length = 1
-        while num % K != 0 and num <= 2 ** 63:
-            num = num * 10 + 1
-            length += 1
-        return length if num <= 2 ** 63 else -1
+    def canPartition(self, nums: List[int]) -> bool:
+        if len(nums) < 2:
+            return False
+        total = sum(nums)
+        if total % 2 == 1:
+            return False
+        target = total // 2
+        dp = [True] + [False] * target
+        for num in nums:
+            for i in range(num, len(dp)):
+                if 0 <= i - num <= len(dp) and dp[i - num]:
+                    dp[i] = True
+            if dp[target]:
+                return True
+        return False
 
 
-print(Solution().smallestRepunitDivByK(1))
-print(Solution().smallestRepunitDivByK(2))
-print(Solution().smallestRepunitDivByK(3))
-
-print(2 ** 63)
+print(Solution().canPartition([1,2,5]))
