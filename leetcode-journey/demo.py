@@ -1,20 +1,15 @@
 from typing import List
+from collections import defaultdict
 
 class Solution:
-    def validMountainArray(self, arr: List[int]) -> bool:
-        if len(arr) < 3 or arr[0] >= arr[1] or arr[-2] <= arr[-1]:
-            return False
-
-        for i, v in enumerate(arr):
-            if v > arr[i + 1]:
-                summit = i
-                break
-            elif arr[i] == arr[i + 1]:
-                return False
-        for i, v in enumerate(arr[summit:]):
-            if v <= arr[i + 1]:
-                return False
-        return True
+    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+        domain_count = defaultdict(int)
+        for cpdomain in cpdomains:
+            count, domain = cpdomain.split(' ')
+            parts = domain.split(',')
+            for i in range(len(parts) - 1, -1, -1):
+                domain_count[','.join(parts[i:])] += int(count)
+        return [str(count) + ' ' + domain for domain, count in domain_count.items()]
 
 
-print(Solution().validMountainArray([0,3,2,1]))
+print(Solution().subdomainVisits(["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]))
