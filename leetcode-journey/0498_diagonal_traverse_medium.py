@@ -1,7 +1,3 @@
-from typing import List
-from collections import defaultdict
-
-
 class Solution:
     def findDiagonalOrder(self, matrix: List[List[int]]) -> List[int]:
         res = []
@@ -29,11 +25,3 @@ class Solution:
             if cur_dir == 0 or cur_dir == 2:
                 cur_dir = cur_dir + 1 if cur_dir < 3 else 0
         return res
-
-
-print(Solution().findDiagonalOrder([
- [ 1, 2, 3 ],
- [ 4, 5, 6 ],
- [ 7, 8, 9 ]
-]
-))

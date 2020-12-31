@@ -1,20 +1,15 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
-        def helper(s, k, memo):
-            if k == 0:
-                return 1
-            start = len(s) - k
-            if s[start] == '0':
-                return 0
-            if memo[k]:
-                return memo[k]
-            result = helper(s, k - 1, memo)
-            if k >= 2 and int(s[start: start + 2]) <= 26:
-                result += helper(s, k - 2, memo)
-            memo[k] = result
-            return result
-        memo = [None for _ in range(len(s) + 1)]
-        return helper(s, len(s), memo)
+        if not s or s[0] == '0':
+            return 0
+        dp = [0] * (len(s) + 1)
+        dp[0] = dp[1] = 1
+        for i in range(1, len(s)):
+            if s[i] != '0':
+                dp[i + 1] += dp[i]
+            if 10 <= int(s[i - 1: i + 1]) <= 26:
+                dp[i + 1] += dp[i - 1]
+        return dp[-1]
 
 
 print(Solution().numDecodings("226"))
