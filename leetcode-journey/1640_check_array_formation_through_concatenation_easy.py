@@ -1,6 +1,3 @@
-from typing import List
-from collections import defaultdict
-
 class Solution:
     def canFormArray(self, arr: List[int], pieces: List[List[int]]) -> bool:
         piece_map = {}
@@ -15,8 +12,3 @@ class Solution:
                     return False
                 i += 1
         return True
-
-
-arr = [91,4,64,78]
-pieces = [[78],[4,64],[91]]
-print(Solution().canFormArray(arr, pieces))
