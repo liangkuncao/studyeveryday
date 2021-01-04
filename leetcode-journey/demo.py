@@ -1,22 +1,33 @@
 from typing import List
 from collections import defaultdict
 
+
 class Solution:
-    def canFormArray(self, arr: List[int], pieces: List[List[int]]) -> bool:
-        piece_map = {}
-        for piece in pieces:
-            piece_map[piece[0]] = piece
-        i = 0
-        while i < len(arr):
-            if arr[i] not in piece_map:
-                return False
-            for _, n in enumerate(piece_map[arr[i]]):
-                if arr[i] != n:
+    def countArrangement(self, n: int) -> int:
+        nums = [i for i in range(1, n + 1)]
+
+        def dfs(nums: List[int], cur: List[int]) -> None:
+            nonlocal res
+            if len(nums) == 0:
+                if is_beautiful(cur):
+                    res += 1
+            for i, n in enumerate(nums):
+                cur.append(n)
+                dfs(nums[:i] + nums[i + 1:], cur)
+                cur.pop()
+
+        def is_beautiful(nums: List[int]) -> bool:
+            for i, n in enumerate(nums):
+                j = i + 1
+                if j % n == 0 or n % j == 0:
+                    continue
+                else:
                     return False
-                i += 1
-        return True
+            return True
+
+        res = 0
+        dfs(nums, [])
+        return res
 
 
-arr = [91,4,64,78]
-pieces = [[78],[4,64],[91]]
-print(Solution().canFormArray(arr, pieces))
+print(Solution().countArrangement(3))
