@@ -20,3 +20,20 @@ class Solution:
 
 print(Solution().longestPalindrome('cbbd'))
 
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        res = ''
+        i = 0
+        while i < len(s):
+            if len(s)-i < len(res)//2:
+                break
+            h, j = i - 1, i + 1
+            while j < len(s) and s[j] == s[i]:
+                j += 1
+            i = j
+            while h >= 0 and j < len(s) and s[h] == s[j]:
+                h -= 1
+                j += 1
+            if j - h - 1 > len(res):
+                res = s[h + 1: j]
+        return res
