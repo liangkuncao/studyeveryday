@@ -1,6 +1,3 @@
-import re
-
-
 class Solution:
     def simplifyPath(self, path: str) -> str:
         res = []
@@ -18,6 +15,3 @@ class Solution:
             else:
                 res.append(level)
         return '/' + '/'.join(res)
-
-
-print(Solution().simplifyPath("/../"))
