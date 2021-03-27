@@ -4,20 +4,10 @@ class ListNode(object):
         self.val = x
         self.next = None
 
-class Solution(object):
-    def getIntersectionNode(self, headA, headB):
-        """
-        :type head1, head1: ListNode
-        :rtype: ListNode
-        """
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
         p1, p2 = headA, headB
         while p1 != p2:
-            if not p1:
-                p1 = headB
-            else:
-                p1 = p1.next
-            if not p2:
-                p2 = headA
-            else:
-                p2 = p2.next
+            p1 = p1.next if p1 else headB
+            p2 = p2.next if p2 else headA
         return p1
